@@ -1,0 +1,1 @@
+[{"pkgName":"cl-user","text":"(+ (hi) (hi))"},{"pkgName":"cl-user","text":"(+ hi hi hi)"},{"pkgName":"cl-user","text":"(hi)"},{"pkgName":"cl-user","text":"hi"},{"pkgName":"cl-user","text":"(defun hi () 4)"},{"pkgName":"cl-user","text":"(defun (potato) 4)"},{"pkgName":"cl-user","text":"(defun potato 4)"}]

@@ -6,11 +6,36 @@ Small Common Lisp experiment for a minimal HTML DSL.
 
 This project prototypes an `html` macro in `src/dsl.lisp` that:
 
-- Defines a tiny allowlist of tags and attributes
-- Validates tags/attributes before rendering
+- Uses permissive tag/attribute rendering
+- Applies lightweight coercions (`class` lists, boolean attrs)
 - Emits HTML strings from Lisp forms
+- Includes a tiny CSS DSL (`css`, `css-rule`)
 
 It is an exploratory proof-of-concept, not a full web framework.
+
+## Direction
+
+Current direction is permissive and minimal-effort:
+
+- Permissive tags/attributes
+- Nested nodes
+- Safe escaping by default
+- Explicit raw escape hatch via `(raw "...")`
+- Tiny CSS DSL via `css` and `css-rule`
+
+## Screenshots
+
+Code:
+
+![Code Screenshot](assets/pic_code.png)
+
+Render:
+
+![Render Screenshot](assets/pic_render.png)
+
+Side-by-side (code left, render right):
+
+![Combined Screenshot](assets/pic_all.png)
 
 ## Run
 
@@ -68,6 +93,7 @@ sbcl --script src/demo-realistic.lisp
 - `tests/test.lisp`: input/output verification tests
 - `docs/html-dsl-scope.md`: explicit scope/contract for supported HTML subset
 - `docs/dsl-design-notes.md`: design tradeoffs and future direction notes
+- `assets/pic_code.png`, `assets/pic_render.png`, `assets/pic_all.png`: project screenshots
 
 ## When You Were Working On It
 

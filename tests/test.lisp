@@ -16,13 +16,13 @@
     (render-demo-page))
 
 (assert-equal
-    "invalid-attribute-is-rejected"
-    ""
+    "arbitrary-attribute-is-allowed"
+    "<h1 onclick='evil()'>Hello</h1>"
     (html (:h1 "Hello" '(:onclick "evil()"))))
 
 (assert-equal
-    "invalid-tag-is-rejected"
-    ""
+    "arbitrary-tag-is-allowed"
+    "<table class='x'>Nope</table>"
     (html (:table "Nope" '(:class "x"))))
 
 (assert-equal
@@ -53,6 +53,67 @@
     "escape-content-and-attributes"
     "<p title='&quot;q&quot; &amp;'>5 &lt; 7 &amp; 9 &gt; 2</p>"
     (html (:p "5 < 7 & 9 > 2" '(:title "\"q\" &"))))
+
+(assert-equal
+    "class-list-joins-with-spaces"
+    "<div class='card primary wide'>x</div>"
+    (html (:div "x" '(:class ("card" "primary" "wide")))))
+
+(assert-equal
+    "boolean-and-nil-attributes"
+    "<input disabled type='checkbox'></input>"
+    (html (:input "" '(:disabled t :checked nil :type "checkbox"))))
+
+(assert-equal
+    "nested-list-items"
+    "<ul><li>One</li><li>Two</li><li>Three</li></ul>"
+    (html
+        (:ul
+            (:li "One")
+            (:li "Two")
+            (:li "Three"))))
+
+(assert-equal
+    "nested-with-parent-attributes"
+    "<div class='card'><h3>Title</h3><p>Body</p></div>"
+    (html
+        (:div
+            (:h3 "Title")
+            (:p "Body")
+            '(:class "card"))))
+
+(assert-equal
+    "pretty-html-basic"
+    "<div>
+    <p>Hi</p>
+    <br>
+</div>
+"
+    (pretty-html "<div><p>Hi</p><br></div>"))
+
+(assert-equal
+    "css-rule-basic"
+    ".hero { font-size: 48px; line-height: 1.1; }"
+    (css-rule ".hero" '(:font-size "48px" :line-height "1.1")))
+
+(assert-equal
+    "css-multi-rule"
+    ".hero { font-size: 48px; }
+.cta { background-color: #111; }
+"
+    (css
+     (css-rule ".hero" '(:font-size "48px"))
+     (css-rule ".cta" '(:background-color "#111"))))
+
+(assert-equal
+    "raw-unescaped-content"
+    "<p><strong>trusted</strong></p>"
+    (html (:p (raw "<strong>trusted</strong>"))))
+
+(assert-equal
+    "raw-mixed-with-escaped-content"
+    "<div><em>x</em> &amp; y</div>"
+    (html (:div (raw "<em>x</em>") " & y")))
 
 (when (> *failed* 0)
     (format t "~%~d test(s) failed.~%" *failed*)

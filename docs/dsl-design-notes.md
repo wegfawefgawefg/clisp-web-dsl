@@ -20,7 +20,8 @@ Two valid approaches:
     - Lower maintenance
     - Closer to generic emitters
 
-Current implementation is allowlist-based for a minimal subset.
+Current implementation follows a permissive direction for both tag names and attribute names.
+Small coercions are layered on top (`class` lists, boolean attributes, nil omission).
 
 ## What Is Actually Risky?
 
@@ -56,7 +57,17 @@ These represent two ends of the design spectrum:
     - Stricter HTML5-aware validation
     - More opinionated correctness checks
 
-This DSL can intentionally pick one mode, or add strict/permissive modes later.
+This DSL currently leans CL-WHO-ish in spirit: flexible generation with lightweight structural rules.
+
+## Current Direction
+
+The current direction is:
+
+- permissive tags and attributes
+- maintain void-tag knowledge for cleaner output
+- escaped-by-default rendering
+- explicit raw escape hatch (`raw`) for trusted markup
+- tiny CSS DSL (`css`, `css-rule`) for demo-level styling
 
 ## Modernization Path (If Expanded)
 

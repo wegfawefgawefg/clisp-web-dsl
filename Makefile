@@ -1,4 +1,4 @@
-.PHONY: run dev test demo demo-realistic
+.PHONY: run dev test demo demo-realistic demo-tailwind
 
 run:
 	@sbcl --script scripts/run.lisp
@@ -14,3 +14,6 @@ demo:
 
 demo-realistic:
 	@sbcl --script src/demo-realistic.lisp
+
+demo-tailwind:
+	@sbcl --script src/demo-tailwind.lisp

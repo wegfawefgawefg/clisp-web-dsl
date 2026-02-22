@@ -37,6 +37,10 @@ Side-by-side (code left, render right):
 
 ![Combined Screenshot](assets/pic_all.png)
 
+Tailwind demo render:
+
+![Tailwind Demo Screenshot](assets/image.png)
+
 ## Run
 
 Prerequisite:
@@ -73,6 +77,12 @@ Run a denser, more realistic page-style demo:
 make demo-realistic
 ```
 
+Run a Tailwind-styled demo page render:
+
+```bash
+make demo-tailwind
+```
+
 Direct commands (without Make):
 
 ```bash
@@ -81,6 +91,7 @@ sbcl --script scripts/dev.lisp
 sbcl --script tests/test.lisp
 sbcl --script src/demo.lisp
 sbcl --script src/demo-realistic.lisp
+sbcl --script src/demo-tailwind.lisp
 ```
 
 ## Layout
@@ -88,12 +99,14 @@ sbcl --script src/demo-realistic.lisp
 - `src/dsl.lisp`: DSL implementation (`html` macro + helpers)
 - `src/demo.lisp`: larger one-shot feature demo render
 - `src/demo-realistic.lisp`: denser product-page style demo render
+- `src/demo-tailwind.lisp`: Tailwind CDN demo render using utility classes
 - `scripts/run.lisp`: one-shot run entrypoint
 - `scripts/dev.lisp`: file-watch dev runner
 - `tests/test.lisp`: input/output verification tests
 - `docs/html-dsl-scope.md`: explicit scope/contract for supported HTML subset
 - `docs/dsl-design-notes.md`: design tradeoffs and future direction notes
-- `assets/pic_code.png`, `assets/pic_render.png`, `assets/pic_all.png`: project screenshots
+- `docs/compile-time-checking.md`: what compile-time validation can and cannot guarantee
+- `assets/pic_code.png`, `assets/pic_render.png`, `assets/pic_all.png`, `assets/image.png`: project screenshots
 
 ## When You Were Working On It
 
